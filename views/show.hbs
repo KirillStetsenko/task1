@@ -1,0 +1,19 @@
+<h1>Show</h1>
+
+<a href='/'>back</a>
+
+<hr />
+<ul>
+
+	{{#each result}}
+		<li>
+			{{id}}
+			-
+			{{name}}
+			<a href='show/{{id}}'>More info</a>
+		</li>
+
+	{{/each}}
+</ul>
+
+<p>Status: {{message}}</p>
