@@ -70,6 +70,21 @@ app.get('/show/:id', async (req, res) => {
 	}
 });
 
-app.get('/delete', (req, res) => res.render('delete'));
+app.get('/delete/:id', async (req, res) => {
+	let id = req.params.id;
+	let query = `DELETE FROM users WHERE id = ${id}`;
+	let message = '';
+
+	try {
+		await connection.query(query);
+		message = `User with id ${id} deleted!`;
+		console.log(`User with id ${id} deleted!`);
+
+		res.render('delete', { message: message });
+	} catch (err) {
+		message = err;
+		console.log('Error: ', err);
+	}
+});
 
 app.listen(3000, () => console.log('Server work'));
